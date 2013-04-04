@@ -1,0 +1,5 @@
+{
+    "version": 1.1,
+    "download_uri": "https://github.com/markokaestner/alfred2/blob/master/workflows/OF-TaskActions/package/OF-TaskActions.alfredworkflow?raw=true",
+    "description": "show Task details as subtext, Alleyoop support"
+}
