@@ -1,8 +1,5 @@
-Alfred 2 Stuff
-==============
-
 OF - Task Actions Workflow
---------------------------
+==========================
 
 This workflow will list all tasks of a perspective.
 
