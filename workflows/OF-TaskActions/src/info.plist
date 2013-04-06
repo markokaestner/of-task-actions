@@ -129,7 +129,7 @@
 	<key>createdby</key>
 	<string>mk</string>
 	<key>description</key>
-	<string>Show tasks of a perspective and work with them</string>
+	<string>Work with OmniFocus tasks</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
