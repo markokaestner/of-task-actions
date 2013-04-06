@@ -23,19 +23,11 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>F8ECDE14-1F56-4A4F-9571-2AFCAB08971B</string>
+				<string>302013FC-E146-4CD9-814E-5AA0154C335F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>302013FC-E146-4CD9-814E-5AA0154C335F</string>
-				<key>modifiers</key>
-				<integer>524288</integer>
-				<key>modifiersubtext</key>
-				<string>Show tasks</string>
 			</dict>
 		</array>
 		<key>417EDFE4-EEA3-4586-BACB-72B5CD1488FA</key>
@@ -309,24 +301,6 @@ end if</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>script</key>
-				<string>OFOC="com.omnigroup.OmniFocus"
-if [ ! -d "$HOME/Library/Caches/Metadata/$OFOC" ]; then OFOC=$OFOC.MacAppStore; fi
-
-open "$HOME/Library/Caches/Metadata/$OFOC/{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>F8ECDE14-1F56-4A4F-9571-2AFCAB08971B</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -453,7 +427,7 @@ open "$HOME/Library/Caches/Metadata/$OFOC/{query}"</string>
 		<key>302013FC-E146-4CD9-814E-5AA0154C335F</key>
 		<dict>
 			<key>ypos</key>
-			<real>770</real>
+			<real>670</real>
 		</dict>
 		<key>376B7914-BA86-4DCC-8AE3-59E9F4B620CF</key>
 		<dict>
@@ -509,11 +483,6 @@ open "$HOME/Library/Caches/Metadata/$OFOC/{query}"</string>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
-		</dict>
-		<key>F8ECDE14-1F56-4A4F-9571-2AFCAB08971B</key>
-		<dict>
-			<key>ypos</key>
-			<real>670</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
