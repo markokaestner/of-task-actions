@@ -30,7 +30,7 @@ for T in ${TASKS[*]}; do
   REST=${REST#*|}
   TDUE=${REST%%|*}
   CONTEXT=${REST##*|}
-  echo "<item uid='${TID}' arg='${TID}'><title>${TNAME##*= } (${PROJECT})</title><subtitle>Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}</subtitle><icon>icon.png</icon></item>"
+  echo "<item uid='oftask' arg='${TID}'><title>${TNAME##*= } (${PROJECT})</title><subtitle>Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}</subtitle><icon>icon.png</icon></item>"
 done
 echo "</items>"
 
