@@ -12,7 +12,7 @@ YEARZERO=$(date -j -f "%Y-%m-%d %H:%M:%S %z" "2001-01-01 0:0:0 $ZONERESET" "+%s"
 START="($YEARZERO + t.dateToStart)";
 DUE="($YEARZERO + t.dateDue)";
 
-SQL="SELECT t.persistentIdentifier, t.name, strftime('%Y-%m-%d|%H:%M',${START}, 'unixepoch'), strftime('%Y-%m-%d|%H:%M',${DUE}, 'unixepoch'), p.name FROM Task t, (Task tt left join ProjectInfo pp ON     tt.persistentIdentifier = pp.pk ) p, Context c WHERE t.blocked = 0 AND t.childrenCountAvailable = 0 AND t.blockedByFutureStartDate = 0 AND t.dateCompleted IS NULL AND t.containingProjectInfo = p.pk AND t.context = c.persistentIdentifier AND c.name = '${CONTEXT}'"
+SQL="SELECT t.persistentIdentifier, t.name, strftime('%Y-%m-%d %H:%M',${START}, 'unixepoch'), strftime('%Y-%m-%d %H:%M',${DUE}, 'unixepoch'), t.isDueSoon, t.isOverdue, p.name FROM Task t, (Task tt left join ProjectInfo pp ON tt.persistentIdentifier = pp.pk ) p, Context c WHERE t.blocked = 0 AND t.childrenCountAvailable = 0 AND t.blockedByFutureStartDate = 0 AND t.dateCompleted IS NULL AND t.containingProjectInfo = p.pk AND t.context = c.persistentIdentifier AND c.name = '${CONTEXT}'"
 
 OLDIFS=$IFS
 IFS='
@@ -29,8 +29,12 @@ for T in ${TASKS[*]}; do
   TSTART=${REST%%|*}
   REST=${REST#*|}
   TDUE=${REST%%|*}
+  REST=${REST#*|}
+  TSOON=${REST%%|*}
+  REST=${REST#*|}
+  TOVERDUE=${REST%%|*}
   PROJECT=${REST##*|}
-  echo "<item uid='oftask' arg='${TID}'><title>${TNAME##*= } (${PROJECT})</title><subtitle>Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}</subtitle><icon>icon.png</icon></item>"
+  echo "<item uid='oftask' arg='${TID}'><title>${TNAME##*= } (${PROJECT})</title><subtitle>Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}</subtitle><icon>img/task${TSOON}${TOVERDUE}.png</icon></item>"
 done
 echo "</items>"
 

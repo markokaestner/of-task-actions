@@ -26,7 +26,7 @@ for P in ${PROJECTS[*]}; do
   PSTATUS=${PSTATUS%%\"*}
   TASKCOUNT=$(mdls ${P} |grep "com_omnigroup_OmniFocus_TaskCount")
 
-  echo "<item uid='ofproject' arg='${PNAME}'><title>${PNAME} (${PFOLDER})</title><subtitle>Status: ${PSTATUS}  |  Tasks: ${TASKCOUNT##*= }</subtitle><icon>icon.png</icon></item>"
+  echo "<item uid='ofproject' arg='${PNAME}'><title>${PNAME} (${PFOLDER})</title><subtitle>Status: ${PSTATUS}  |  Tasks: ${TASKCOUNT##*= }</subtitle><icon>img/project.png</icon></item>"
 done
 
 echo "</items>"
