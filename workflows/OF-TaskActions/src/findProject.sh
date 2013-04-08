@@ -8,7 +8,7 @@ if [ ! -d "$HOME/Library/Caches/Metadata/$OFOC" ]; then OFOC=$OFOC.MacAppStore; 
 OLDIFS=$IFS
 IFS='
 '
-PROJECTS=($(mdfind -onlyin ~/Library/Caches/Metadata/${OFOC} "kMDItemTitle == '*${QUERY}*'"))
+PROJECTS=($(mdfind -onlyin ~/Library/Caches/Metadata/${OFOC} "kMDItemTitle == '*${QUERY}*'c"))
 
 #echo ${#PROJECTS[@]}
 
