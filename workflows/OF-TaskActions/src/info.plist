@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.markokaestner.ofshowtasks</string>
+	<string>com.markokaestner.oftaskactions</string>
 	<key>connections</key>
 	<dict>
 		<key>1B7FB3FD-8C2E-471A-B172-B2DD4CB524FD</key>
@@ -181,7 +181,7 @@
 	<key>createdby</key>
 	<string>mk</string>
 	<key>description</key>
-	<string>Work with OmniFocus tasks</string>
+	<string>Master your OmniFocus tasks from Alfred</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
