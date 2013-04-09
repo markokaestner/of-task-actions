@@ -1,4 +1,4 @@
-OF - Task Actions Alfred 2Workflow
+OF - Task Actions Alfred 2 Workflow
 ==================================
 
 Master your OmniFocus tasks from Alfred
@@ -11,8 +11,10 @@ Features
 Use Alfred to:
 
 * Search for projects
+* Search for contexts
 * View tasks of a project
-* View tasks in a perspective
+* View tasks of a context
+* View tasks of a perspective
 * Mark tasks complete
 * Flag tasks
 * Open tasks in OmniFocus
@@ -26,21 +28,33 @@ Usage
 -----
 
 ### Keywords
-* **`offp [part of project name]`** - Search for projects
+* **`.offp [part of project name]`** - Search for projects
     * **`ENTER`** - Show available tasks of selected project
 
 ![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_offp.png)
 
-* **`oftp [project name]`** - Show available tasks of project
+* **`.oftp [project name]`** - Show available tasks of project
     * **`ENTER`** - Open task in OmniFocus
     * **`ALT + ENTER`** - Mark task completed
     * **`CMD + ENTER`** - Flag task
 
 ![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_oftp.png)
 
-* **`oftv [perpective name]`** - Show tasks in perspective
+* **`.oftv [perpective name]`** - Show tasks in perspective
     * **`ENTER`** - Open task in OmniFocus
     * **`ALT + ENTER`** - Mark task completed
     * **`CMD + ENTER`** - Flag task
 
 ![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_oftv.png)
+
+* **`.offc [part of context name]`** - Search for contexts
+    * **`ENTER`** - Show available tasks of selected context
+
+![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_offc.png)
+
+* **`.oftc [context name]`** - Show tasks with context
+    * **`ENTER`** - Open task in OmniFocus
+    * **`ALT + ENTER`** - Mark task completed
+    * **`CMD + ENTER`** - Flag task
+
+![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_oftc.png)

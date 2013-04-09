@@ -1,5 +1,5 @@
 {
-    "version": 1.21,
+    "version": 1.3,
     "download_url": "https://github.com/markokaestner/alfred2/blob/master/workflows/OF-TaskActions/package/OF-TaskActions.alfredworkflow?raw=true",
-    "description": "bugfix"
+    "description": "search tasks by context, search contexts, task state icons, bugfixes"
 }
