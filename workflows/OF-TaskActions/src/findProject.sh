@@ -15,16 +15,18 @@ PROJECTS=($(mdfind -onlyin ~/Library/Caches/Metadata/${OFOC} "kMDItemTitle == '*
 echo "<?xml version='1.0'?><items>"
 
 for P in ${PROJECTS[*]}; do
-  PNAME=$(mdls ${P} |grep "kMDItemTitle")
+  P_DATA=$(mdls ${P})
+  #echo $P_DATA
+  PNAME=$(echo "$P_DATA" |grep "kMDItemTitle")
   PNAME=${PNAME##*= \"}
   PNAME=${PNAME%%\"*}
-  PFOLDER=$(mdls ${P} |grep "com_omnigroup_OmniFocus_DirectFolderName")
+  PFOLDER=$(echo "$P_DATA" |grep "com_omnigroup_OmniFocus_DirectFolderName")
   PFOLDER=${PFOLDER##*= \"}
   PFOLDER=${PFOLDER%%\"*}
-  PSTATUS=$(mdls ${P} |grep "com_omnigroup_OmniFocus_Status")
+  PSTATUS=$(echo "$P_DATA" |grep "com_omnigroup_OmniFocus_Status")
   PSTATUS=${PSTATUS##*= \"}
   PSTATUS=${PSTATUS%%\"*}
-  TASKCOUNT=$(mdls ${P} |grep "com_omnigroup_OmniFocus_TaskCount")
+  TASKCOUNT=$(echo "$P_DATA" |grep "com_omnigroup_OmniFocus_TaskCount")
 
   echo "<item uid='ofproject' arg='${PNAME}'><title>${PNAME} (${PFOLDER})</title><subtitle>Status: ${PSTATUS}  |  Tasks: ${TASKCOUNT##*= }</subtitle><icon>img/project.png</icon></item>"
 done
