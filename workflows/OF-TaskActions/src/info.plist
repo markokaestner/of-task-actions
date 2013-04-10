@@ -155,11 +155,33 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>9911EC15-6E11-4AEA-9622-19229358A835</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EEDAAD5D-6787-4076-9E9A-BA7B20B9B557</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>CE20A1BF-9387-4EF3-8209-05F6DE06D31C</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>91B6248A-75BE-49BC-B0CB-EE1192F184E0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>EEDAAD5D-6787-4076-9E9A-BA7B20B9B557</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>69C27133-6328-449F-B863-83CEE49688B7</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -191,25 +213,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
+				<key>escaping</key>
+				<integer>6</integer>
+				<key>script</key>
+				<string>TMPDIR="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.markokaestner.oftaskactions"
+
+if [ ! -d "$TMPDIR" ]; then
+  mkdir "$TMPDIR"
+fi
+
+echo "{query}" &gt; "$TMPDIR/task"
+
+/usr/bin/osascript -e "tell application \"Alfred 2\" to search \".oftd\""</string>
+				<key>type</key>
 				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Task flagged</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>0066F3FF-A938-4126-A2D0-2517379BE8E9</string>
+			<string>D4CE6987-7E78-49A4-9CA9-D7F0DED6BB7E</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -225,6 +247,29 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>CE20A1BF-9387-4EF3-8209-05F6DE06D31C</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>OF: TaskActions</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>69C27133-6328-449F-B863-83CEE49688B7</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -256,7 +301,15 @@ end if</string>
 				<key>runningsubtext</key>
 				<string>Loading tasks...</string>
 				<key>script</key>
-				<string>./getTasksByProject.sh "{query}"</string>
+				<string>TMPDIR="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.markokaestner.oftaskactions"
+
+if [ ! -d "$TMPDIR" ]; then
+  mkdir "$TMPDIR"
+fi
+
+echo ".oftp {query}" &gt; "$TMPDIR/lastSearch"
+
+./getTasksByProject.sh "{query}"</string>
 				<key>subtext</key>
 				<string>Enter project name</string>
 				<key>title</key>
@@ -287,7 +340,7 @@ end if</string>
 				<key>text</key>
 				<string>{query}</string>
 				<key>title</key>
-				<string>Task completed</string>
+				<string>OF: TaskActions</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
@@ -298,9 +351,17 @@ end if</string>
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>62</integer>
+				<integer>38</integer>
 				<key>script</key>
-				<string>osascript showTaskInProject.scpt "{query}"</string>
+				<string>TMPDIR="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.markokaestner.oftaskactions"
+
+if [ ! -d "$TMPDIR" ]; then
+  mkdir "$TMPDIR"
+fi
+
+echo "{query}" &gt; "$TMPDIR/task"
+
+/usr/bin/osascript -e "tell application \"Alfred 2\" to search \".oftd\""</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -354,7 +415,15 @@ end if</string>
 				<key>runningsubtext</key>
 				<string>Loading tasks...</string>
 				<key>script</key>
-				<string>osascript getTasksByPerspective.scpt {query} </string>
+				<string>TMPDIR="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.markokaestner.oftaskactions"
+
+if [ ! -d "$TMPDIR" ]; then
+  mkdir "$TMPDIR"
+fi
+
+echo ".oftv {query}" &gt; "$TMPDIR/lastSearch"
+
+osascript getTasksByPerspective.scpt {query} </string>
 				<key>subtext</key>
 				<string>Enter perspective name</string>
 				<key>title</key>
@@ -385,7 +454,7 @@ end if</string>
 				<key>text</key>
 				<string>{query}</string>
 				<key>title</key>
-				<string>Task completed</string>
+				<string>OF: TaskActions</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
@@ -411,9 +480,17 @@ end if</string>
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>62</integer>
+				<integer>6</integer>
 				<key>script</key>
-				<string>osascript showTaskInProject.scpt "{query}"</string>
+				<string>TMPDIR="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.markokaestner.oftaskactions"
+
+if [ ! -d "$TMPDIR" ]; then
+  mkdir "$TMPDIR"
+fi
+
+echo "{query}" &gt; "$TMPDIR/task"
+
+/usr/bin/osascript -e "tell application \"Alfred 2\" to search \".oftd\""</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -421,6 +498,65 @@ end if</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>C49A42B4-D968-4C20-9967-63CBCEBAB7F7</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>TMPDIR="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.markokaestner.oftaskactions"
+TASKACTION="{query}"
+
+if [ ! -f "$TMPDIR/task" ]; then
+	exit¬                                                                              
+fi
+
+TASK=$(cat "${TMPDIR}/task")
+
+OLDIFS="$IFS"
+IFS="|"
+T=($TASK)
+TID=${T[0]}
+TNAME=${T[1]}
+echo $TID &gt; test.txt
+
+case "${TASKACTION}" in
+
+back)
+	LASTSEARCH=".of"
+	if [ -f "$TMPDIR/lastSearch" ]; then
+		LASTSEARCH=$(cat "$TMPDIR/lastSearch")
+	fi
+
+	/usr/bin/osascript -e "tell application \"Alfred 2\" to search \"${LASTSEARCH}\""
+echo "{query}" &gt; "$TMPDIR/task"
+    ;;
+view)
+	/usr/bin/osascript showTaskInProject.scpt "${TID}"
+    ;;
+done)
+	/usr/bin/osascript completeTask.scpt "${TID}"
+    ;;
+flag)
+	/usr/bin/osascript flagTask.scpt "${TID}"
+   ;;
+unflag)
+	/usr/bin/osascript flagTask.scpt "${TID}"
+   ;;
+*)
+	
+   ;;
+esac
+
+IFS="$OLDIFS"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>EEDAAD5D-6787-4076-9E9A-BA7B20B9B557</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -464,7 +600,15 @@ end if</string>
 				<key>runningsubtext</key>
 				<string>Loading tasks...</string>
 				<key>script</key>
-				<string>./getTasksByContext.sh "{query}"</string>
+				<string>TMPDIR="${HOME}/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/com.markokaestner.oftaskactions"
+
+if [ ! -d "$TMPDIR" ]; then
+  mkdir "$TMPDIR"
+fi
+
+echo ".oftc {query}" &gt; "$TMPDIR/lastSearch"
+
+./getTasksByContext.sh "{query}"</string>
 				<key>subtext</key>
 				<string>Enter context name</string>
 				<key>title</key>
@@ -495,12 +639,39 @@ end if</string>
 				<key>text</key>
 				<string>{query}</string>
 				<key>title</key>
-				<string>Task completed</string>
+				<string>OF: TaskActions</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>F27CEAA4-F16E-4517-9AE3-174ECA385648</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>.offc</string>
+				<key>runningsubtext</key>
+				<string>Loading contexts...</string>
+				<key>script</key>
+				<string>./findContext.sh "{query}"</string>
+				<key>subtext</key>
+				<string>Enter part of context name</string>
+				<key>title</key>
+				<string>OmniFocus: Find context</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>FE7F94F8-EC51-42C7-BD65-3F68A63E060F</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -533,39 +704,12 @@ end if</string>
 				<key>text</key>
 				<string>{query}</string>
 				<key>title</key>
-				<string>Task flagged</string>
+				<string>OF: TaskActions</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>6A2F9953-FA7F-450C-9C6A-D783E849EB7A</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>keyword</key>
-				<string>.offc</string>
-				<key>runningsubtext</key>
-				<string>Loading contexts...</string>
-				<key>script</key>
-				<string>./findContext.sh "{query}"</string>
-				<key>subtext</key>
-				<string>Enter part of context name</string>
-				<key>title</key>
-				<string>OmniFocus: Find context</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>FE7F94F8-EC51-42C7-BD65-3F68A63E060F</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -583,12 +727,35 @@ end if</string>
 				<key>text</key>
 				<string>{query}</string>
 				<key>title</key>
-				<string>Task flagged</string>
+				<string>OF: TaskActions</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>653948EC-1D70-472C-A8BC-7D21E921B088</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>.oftd</string>
+				<key>script</key>
+				<string>./showTaskDetails.sh</string>
+				<key>title</key>
+				<string>OmniFocus: Show task details</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>9911EC15-6E11-4AEA-9622-19229358A835</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -620,17 +787,25 @@ end if</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>62</integer>
-				<key>script</key>
-				<string>osascript showTaskInContext.scpt "{query}"</string>
-				<key>type</key>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
 				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>OF: TaskActions</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>D4CE6987-7E78-49A4-9CA9-D7F0DED6BB7E</string>
+			<string>0066F3FF-A938-4126-A2D0-2517379BE8E9</string>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -692,6 +867,11 @@ end if</string>
 			<key>ypos</key>
 			<real>870</real>
 		</dict>
+		<key>69C27133-6328-449F-B863-83CEE49688B7</key>
+		<dict>
+			<key>ypos</key>
+			<real>1240</real>
+		</dict>
 		<key>6A2F9953-FA7F-450C-9C6A-D783E849EB7A</key>
 		<dict>
 			<key>ypos</key>
@@ -712,6 +892,11 @@ end if</string>
 			<key>ypos</key>
 			<real>440</real>
 		</dict>
+		<key>9911EC15-6E11-4AEA-9622-19229358A835</key>
+		<dict>
+			<key>ypos</key>
+			<real>1240</real>
+		</dict>
 		<key>A3F9548F-3F21-4D80-B36B-AF8B1D4D989D</key>
 		<dict>
 			<key>ypos</key>
@@ -731,6 +916,11 @@ end if</string>
 		<dict>
 			<key>ypos</key>
 			<real>340</real>
+		</dict>
+		<key>EEDAAD5D-6787-4076-9E9A-BA7B20B9B557</key>
+		<dict>
+			<key>ypos</key>
+			<real>1240</real>
 		</dict>
 		<key>F27CEAA4-F16E-4517-9AE3-174ECA385648</key>
 		<dict>

@@ -2,6 +2,7 @@
 
 QUERY=$1
 PROJECT=${QUERY}
+THEME="dark"
 
 OFOC="com.omnigroup.OmniFocus"
 if [ ! -d "$HOME/Library/Caches/$OFOC" ]; then OFOC=$OFOC.MacAppStore; fi
@@ -12,7 +13,7 @@ YEARZERO=$(date -j -f "%Y-%m-%d %H:%M:%S %z" "2001-01-01 0:0:0 $ZONERESET" "+%s"
 START="($YEARZERO + t.dateToStart)";
 DUE="($YEARZERO + t.dateDue)";
 
-SQL="SELECT t.persistentIdentifier, t.name, strftime('%Y-%m-%d %H:%M',${START}, 'unixepoch'), strftime('%Y-%m-%d %H:%M',${DUE}, 'unixepoch'), t.isDueSoon, t.isOverDue, c.name FROM Task t left join Context c ON t.context = c.persistentIdentifier, (Task ttt left join ProjectInfo pp ON ttt.persistentIdentifier = pp.pk ) p WHERE t.blocked = 0 AND t.childrenCountAvailable = 0 AND t.blockedByFutureStartDate = 0 AND t.dateCompleted IS NULL AND t.containingProjectInfo = p.pk AND p.name = '${PROJECT}'"
+SQL="SELECT t.persistentIdentifier, t.name, strftime('%Y-%m-%d %H:%M',${START}, 'unixepoch'), strftime('%Y-%m-%d %H:%M',${DUE}, 'unixepoch'), t.isDueSoon, t.isOverDue, t.flagged, t.repetitionMethodString, t.repetitionRuleString, c.name FROM Task t left join Context c ON t.context = c.persistentIdentifier, (Task ttt left join ProjectInfo pp ON ttt.persistentIdentifier = pp.pk ) p WHERE t.blocked = 0 AND t.childrenCountAvailable = 0 AND t.blockedByFutureStartDate = 0 AND t.dateCompleted IS NULL AND t.containingProjectInfo = p.pk AND p.name = '${PROJECT}'"
 
 OLDIFS=$IFS
 IFS='
@@ -34,7 +35,7 @@ for T in ${TASKS[*]}; do
   REST=${REST#*|}
   TOVERDUE=${REST%%|*}
   CONTEXT=${REST##*|}
-  echo "<item uid='oftask' arg='${TID}'><title>${TNAME##*= } (${PROJECT})</title><subtitle>Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}</subtitle><icon>img/task${TSOON}${TOVERDUE}.png</icon></item>"
+  echo "<item uid='oftask' arg='${T}|${PROJECT}'><title>${TNAME} (${PROJECT})</title><subtitle>Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}</subtitle><icon>img/detail/${THEME}/task${TSOON}${TOVERDUE}.png</icon></item>"
 done
 echo "</items>"
 
