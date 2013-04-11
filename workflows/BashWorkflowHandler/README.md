@@ -39,6 +39,6 @@ setPref "key" "value" 1
 # read volatile pref
 MYVAR=$(getPref "key" 0)
 
-# read non-volatike pref
+# read non-volatile pref
 MYVAR=$(getPref "key" 1)
 ```
