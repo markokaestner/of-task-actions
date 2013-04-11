@@ -19,7 +19,7 @@ Usage
 ### Create feedback XML
 ```
 # create feedback entries
-addResult "uid" "arg" "valid" "title" "subtitle" "icon"
+addResult "uid" "arg" "valid" "autocomplete" "title" "subtitle" "icon"
 
 # get feedback xml
 getXMLResults
