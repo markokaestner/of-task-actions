@@ -28,7 +28,7 @@ getXMLResults() {
   echo "<?xml version='1.0'?><items>"
 
   for R in ${RESULTS[*]}; do
-    echo "$R"
+    echo "$R" | tr '\n' ' '
   done
 
   echo "</items>"
