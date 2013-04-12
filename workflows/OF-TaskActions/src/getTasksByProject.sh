@@ -36,7 +36,7 @@ for T in ${TASKS[*]}; do
   TOVERDUE=${REST%%|*}
   CONTEXT=${REST##*|}
 
-  addResult "oftask" "${T}|${PROJECT}" "yes" "${TNAME} (${PROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
+  addResult "oftask" "${T}|${PROJECT}|0" "yes" "${TNAME} (${PROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
 done
 
 getXMLResults
