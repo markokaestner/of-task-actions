@@ -67,6 +67,7 @@ getCacheDir() {
 # $1 key
 # $2 value
 # $3 non-volatile 0/1
+# $4 filename (optional, filename will be "settings" if not specified)
 ###############################################################################
 setPref() {
   local BUNDLEID=$(getBundleId)
@@ -80,7 +81,12 @@ setPref() {
     mkdir -p "$PREFDIR"
   fi
 
-  local PREFFILE="${PREFDIR}/settings"
+  if [ -z "$4" ]; then
+    local PREFFILE="${PREFDIR}/settings"
+  else
+    local PREFFILE="${PREFDIR}/$4"
+  fi
+
   if [ ! -f "$PREFFILE" ]; then
     touch "$PREFFILE"
   fi
@@ -98,6 +104,7 @@ setPref() {
 #
 # $1 key
 # $2 non-volatile 0/1
+# $3 filename (optional, filename will be "settings" if not specified)
 ###############################################################################
 getPref() {
   local BUNDLEID=$(getBundleId)
@@ -111,7 +118,12 @@ getPref() {
     return
   fi
 
-  local PREFFILE="${PREFDIR}/settings"
+  if [ -z "$3" ]; then
+    local PREFFILE="${PREFDIR}/settings"
+  else
+    local PREFFILE="${PREFDIR}/$3"
+  fi
+
   if [ ! -f "$PREFFILE" ]; then
     return
   fi
