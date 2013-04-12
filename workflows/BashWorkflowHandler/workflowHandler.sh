@@ -27,9 +27,9 @@ addResult() {
 getXMLResults() {
   echo "<?xml version='1.0'?><items>"
 
-  if [ "${#string[@]}" = "0" ]; then
-    addResult "oftask" "." "no" "No results found" "Please try another search term"
-  fi
+#  if [ "${#string[@]}" = "0" ]; then
+#    echo "<item uid='oftask' arg='-' valid='no'><title>No results found</title><subtitle>Please try another search term</subtitle><icon></icon></item>"
+#  fi
 
   for R in ${RESULTS[*]}; do
     echo "$R" | tr '\n' ' '
