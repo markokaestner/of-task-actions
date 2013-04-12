@@ -401,8 +401,6 @@ T=($TASK)
 TID=${T[0]}
 TNAME=${T[1]}
 
-echo $TID &gt; test.txt
-
 case "{query}" in
 
 back)
