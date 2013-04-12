@@ -22,21 +22,28 @@ TREPTYPE=${T[7]}
 TREPRULE=${T[8]}
 CONTEXT=${T[9]}
 PROJECT=${T[10]}
+TDONE=${T[11]}
 
-addResult "ofnavaction" "back" "yes" "Back" "Go back to previous search" "img/detail/${THEME}/back.png"
-addResult "oftaskaction" "done" "yes" "Complete" "Mark task completed" "img/detail/${THEME}/done.png"
-if [ "${TFLAGGED}" = "0" ]; then
-  addResult "oftaskaction" "flag" "yes" "Flag" "Flag the task" "img/detail/${THEME}/flag.png"
+RANDOMUID=$(date +"%s")=
+
+addResult "${RANDOMUID}1" "back" "yes" "Back" "Go back to previous search" "img/detail/${THEME}/back.png"
+
+if [ "$TDONE" = "1" ]; then
+  addResult "${RANDOMUID}2" "done" "yes" "${TNAME}" "Klick to uncheck" "img/detail/${THEME}/done.png"
 else
-  addResult "oftaskaction" "unflag" "yes" "Un-Flag" "Un-Flag the task" "img/detail/${THEME}/flag.png"
+  addResult "${RANDOMUID}3" "done" "yes" "${TNAME}" "Klick to check" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
 fi
-addResult "oftaskaction" "${SEARCH:4:1}view" "yes" "Show in OF" "Open the task in OF" "img/detail/${THEME}/view.png"
+addResult "${RANDOMUID}4" "" "no" "${PROJECT}" "Project" "img/detail/${THEME}/project.png"
+addResult "${RANDOMUID}5" "" "no" "${CONTEXT}" "Context" "img/detail/${THEME}/context.png"
+addResult "${RANDOMUID}6" "" "no" "${TSTART}" "Start date" "img/detail/${THEME}/cal.png"
+addResult "${RANDOMUID}7" "" "no" "${TDUE}" "Due date" "img/detail/${THEME}/cal.png"
 
-addResult "oftaskinfo" "-" "no" "${TNAME}" "Task name" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
-addResult "oftaskinfo" "-" "no" "${PROJECT}" "Project" "img/detail/${THEME}/project.png"
-addResult "oftaskinfo" "-" "no" "${CONTEXT}" "Context" "img/detail/${THEME}/context.png"
-addResult "oftaskinfo" "-" "no" "${TSTART}" "Start date" "img/detail/${THEME}/cal.png"
-addResult "oftaskinfo" "-" "no" "${TDUE}" "Due date" "img/detail/${THEME}/cal.png"
+if [ "${TFLAGGED}" = "0" ]; then
+  addResult "${RANDOMUID}8" "flag" "yes" "Flag" "Flag the task" "img/detail/${THEME}/flag.png"
+else
+  addResult "${RANDOMUID}9" "flag" "yes" "Un-Flag" "Un-Flag the task" "img/detail/${THEME}/flag.png"
+fi
+addResult "${RANDOMUID}10" "${SEARCH:4:1}view" "yes" "Show in OF" "Open the task in OF" "img/detail/${THEME}/view.png"
 
 getXMLResults
 
