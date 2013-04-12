@@ -72,19 +72,31 @@ echo "$CACHEDIR"
 ### Store preferences
 #### Example
 ```
-# store volatile
+# store volatile pref in default settings file
 setPref "key" "value" 0
 
-# store non-volatile
+# store non-volatile pref in default settings file
 setPref "key" "value" 1
+
+# store volatile pref in specified file
+setPref "key" "value" 0 "myprefs.txt"
+
+# store non-volatile pref in specified file
+setPref "key" "value" 1 "myprefs.txt"
 ```
 
 ### Read preferences
 #### Example
 ```
-# read volatile pref
+# read volatile pref from default settings file
 MYVAR=$(getPref "key" 0)
 
-# read non-volatile pref
+# read non-volatile pref from default settings file
 MYVAR=$(getPref "key" 1)
+
+# read volatile pref from specified file
+MYVAR=$(getPref "key" 0 "myprefs.txt")
+
+# read non-volatile pref from specified file
+MYVAR=$(getPref "key" 1 "myprefs.txt")
 ```
