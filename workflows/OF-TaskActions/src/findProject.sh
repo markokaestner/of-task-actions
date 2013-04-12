@@ -10,13 +10,10 @@ IFS='
 '
 PROJECTS=($(mdfind -onlyin ~/Library/Caches/Metadata/${OFOC} "kMDItemTitle == '*${QUERY}*'c"))
 
-#echo ${#PROJECTS[@]}
-
 echo "<?xml version='1.0'?><items>"
 
 for P in ${PROJECTS[*]}; do
   P_DATA=$(mdls ${P})
-  #echo $P_DATA
   PNAME=$(echo "$P_DATA" |grep "kMDItemTitle")
   PNAME=${PNAME##*= \"}
   PNAME=${PNAME%%\"*}
