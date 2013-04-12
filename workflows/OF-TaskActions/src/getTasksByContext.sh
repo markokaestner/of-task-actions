@@ -1,8 +1,10 @@
 #!/bin/bash
 
+. workflowHandler.sh
+
 QUERY=$1
 CONTEXT=${QUERY}
-THEME="dark"
+THEME=$(getPref theme 1)
 
 OFOC="com.omnigroup.OmniFocus"
 if [ ! -d "$HOME/Library/Caches/$OFOC" ]; then OFOC=$OFOC.MacAppStore; fi
@@ -19,8 +21,6 @@ OLDIFS="$IFS"
 IFS='
 '
 TASKS=$(sqlite3 ${HOME}/Library/Caches/${OFOC}/OmniFocusDatabase2 "${SQL}")
-
-echo "<?xml version='1.0'?><items>"
 
 for T in ${TASKS[*]}; do
   TID=${T%%|*}
@@ -43,8 +43,11 @@ for T in ${TASKS[*]}; do
   REST=${REST#*|}
   TCONTEXT=${REST%%|*}
   TPROJECT=${REST##*|}
-  echo "<item uid='oftask' arg='${T}'><title>${TNAME##*= } (${TPROJECT})</title><subtitle>Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${TCONTEXT}</subtitle><icon>img/detail/${THEME}/task${TSOON}${TOVERDUE}.png</icon></item>"
+
+  addResult "oftask" "${T}" "yes" "${TNAME} (${TPROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${TCONTEXT}" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
 done
-echo "</items>"
 
 IFS="$OLDIFS"
+
+getXMLResults
+
