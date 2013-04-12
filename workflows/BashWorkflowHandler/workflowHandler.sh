@@ -10,14 +10,14 @@ RESULTS=()
 #
 # $1 uid
 # $2 arg
-# $3 valid
-# $4 title
-# $5 subtitle
-# $6 icon
+# $3 title
+# $4 subtitle
+# $5 icon
+# $6 valid
 # $7 autocomplete
 ###############################################################################
 addResult() {
-  RESULT="<item uid='$1' arg='$2' valid='$3' autocomplete='$7'><title>$4</title><subtitle>$5</subtitle><icon>$6</icon></item>"
+  RESULT="<item uid='$1' arg='$2' valid='$6' autocomplete='$7'><title>$3</title><subtitle>$4</subtitle><icon>$5</icon></item>"
   RESULTS+=("$RESULT")
 }
 
