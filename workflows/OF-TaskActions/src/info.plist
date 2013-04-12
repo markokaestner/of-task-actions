@@ -63,6 +63,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>8F9DE859-5A9C-4B49-B378-6E59FC28CB26</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F776373A-EC81-4548-8127-958986750A66</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>9911EC15-6E11-4AEA-9622-19229358A835</key>
 		<array>
 			<dict>
@@ -420,9 +431,6 @@ done)
 flag)
 	/usr/bin/osascript flagTask.scpt "${TID}"
    ;;
-unflag)
-	/usr/bin/osascript flagTask.scpt "${TID}"
-   ;;
 *)
 	
    ;;
@@ -545,6 +553,35 @@ setPref "lastSearch" ".oftc {query}" 0
 			<key>uid</key>
 			<string>376B7914-BA86-4DCC-8AE3-59E9F4B620CF</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>.ofdt</string>
+				<key>runningsubtext</key>
+				<string>Loading tasks...</string>
+				<key>script</key>
+				<string>. workflowHandler.sh
+
+setPref "lastSearch" ".ofdt" 0
+
+./getTasksDoneToday.sh</string>
+				<key>title</key>
+				<string>OmniFocus: Show tasks completed today</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>8F9DE859-5A9C-4B49-B378-6E59FC28CB26</string>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -563,17 +600,17 @@ setPref "lastSearch" ".oftc {query}" 0
 		<key>302013FC-E146-4CD9-814E-5AA0154C335F</key>
 		<dict>
 			<key>ypos</key>
-			<real>600</real>
+			<real>710</real>
 		</dict>
 		<key>376B7914-BA86-4DCC-8AE3-59E9F4B620CF</key>
 		<dict>
 			<key>ypos</key>
-			<real>600</real>
+			<real>710</real>
 		</dict>
 		<key>3CE76F56-EC88-4255-80EF-3BE3F9D75A41</key>
 		<dict>
 			<key>ypos</key>
-			<real>860</real>
+			<real>970</real>
 		</dict>
 		<key>417EDFE4-EEA3-4586-BACB-72B5CD1488FA</key>
 		<dict>
@@ -583,7 +620,7 @@ setPref "lastSearch" ".oftc {query}" 0
 		<key>538E276F-6A73-4474-913B-ADA39F36E65B</key>
 		<dict>
 			<key>ypos</key>
-			<real>710</real>
+			<real>820</real>
 		</dict>
 		<key>5B4B3531-F9BE-40EB-8315-AC6E4599AD24</key>
 		<dict>
@@ -593,37 +630,42 @@ setPref "lastSearch" ".oftc {query}" 0
 		<key>69C27133-6328-449F-B863-83CEE49688B7</key>
 		<dict>
 			<key>ypos</key>
+			<real>560</real>
+		</dict>
+		<key>8F9DE859-5A9C-4B49-B378-6E59FC28CB26</key>
+		<dict>
+			<key>ypos</key>
 			<real>450</real>
 		</dict>
 		<key>9911EC15-6E11-4AEA-9622-19229358A835</key>
 		<dict>
 			<key>ypos</key>
-			<real>450</real>
+			<real>560</real>
 		</dict>
 		<key>9A457476-6781-4B5A-A7BC-88BF5D4180C7</key>
 		<dict>
 			<key>ypos</key>
-			<real>860</real>
+			<real>970</real>
 		</dict>
 		<key>CD421C32-4DFF-4081-83AA-124CFA799A2C</key>
 		<dict>
 			<key>ypos</key>
-			<real>860</real>
+			<real>970</real>
 		</dict>
 		<key>EEDAAD5D-6787-4076-9E9A-BA7B20B9B557</key>
 		<dict>
 			<key>ypos</key>
-			<real>450</real>
+			<real>560</real>
 		</dict>
 		<key>F776373A-EC81-4548-8127-958986750A66</key>
 		<dict>
 			<key>ypos</key>
-			<real>170</real>
+			<real>230</real>
 		</dict>
 		<key>FE7F94F8-EC51-42C7-BD65-3F68A63E060F</key>
 		<dict>
 			<key>ypos</key>
-			<real>710</real>
+			<real>820</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>

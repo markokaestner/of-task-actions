@@ -33,7 +33,7 @@ for T in ${TASKS[*]}; do
   REST=${REST#*|}
   TOVERDUE=${REST%%|*}
 
-  addResult "oftask" "${T}||" "yes" "${TNAME}" "Start: ${TSTART}  |  Due: ${TDUE}" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
+  addResult "oftask" "${T}|||0" "yes" "${TNAME}" "Start: ${TSTART}  |  Due: ${TDUE}" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
 done
 
 getXMLResults
