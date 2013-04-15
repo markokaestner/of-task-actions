@@ -33,10 +33,10 @@ if [ "$TDONE" = "1" ]; then
 else
   addResult "${RANDOMUID}3" "done" "yes" "${TNAME}" "Klick to check" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
 fi
-addResult "${RANDOMUID}4" "" "no" "${PROJECT}" "Project" "img/detail/${THEME}/project.png"
-addResult "${RANDOMUID}5" "" "no" "${CONTEXT}" "Context" "img/detail/${THEME}/context.png"
-addResult "${RANDOMUID}6" "" "no" "${TSTART}" "Start date" "img/detail/${THEME}/cal.png"
-addResult "${RANDOMUID}7" "" "no" "${TDUE}" "Due date" "img/detail/${THEME}/cal.png"
+addResult "${RANDOMUID}4" "gotoproject" "yes" "${PROJECT}" "Project" "img/detail/${THEME}/project.png"
+addResult "${RANDOMUID}5" "gotocontext" "yes" "${CONTEXT}" "Context" "img/detail/${THEME}/context.png"
+addResult "${RANDOMUID}6" "deferstart" "yes" "${TSTART}" "Start date" "img/detail/${THEME}/cal.png"
+addResult "${RANDOMUID}7" "deferdue" "yes" "${TDUE}" "Due date" "img/detail/${THEME}/cal.png"
 
 if [ "${TFLAGGED}" = "0" ]; then
   addResult "${RANDOMUID}8" "flag" "yes" "Flag" "Flag the task" "img/detail/${THEME}/flag.png"
