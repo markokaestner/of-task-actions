@@ -44,7 +44,7 @@ for T in ${TASKS[*]}; do
   TCONTEXT=${REST%%|*}
   TPROJECT=${REST##*|}
 
-  addResult "oftask" "${T}|0" "yes" "${TNAME} (${TPROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${TCONTEXT}" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
+  addResult "oftask" "${T}|0" "yes" "${TNAME} (${TPROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${TCONTEXT}" "img/detail/${THEME}/task${TFLAGGED}${TSOON}${TOVERDUE}.png"
 done
 
 IFS="$OLDIFS"

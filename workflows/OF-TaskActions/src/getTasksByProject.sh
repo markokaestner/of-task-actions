@@ -34,9 +34,15 @@ for T in ${TASKS[*]}; do
   TSOON=${REST%%|*}
   REST=${REST#*|}
   TOVERDUE=${REST%%|*}
+  REST=${REST#*|}
+  TFLAGGED=${REST%%|*}
+  REST=${REST#*|}
+  TREPTYPE=${REST%%|*}
+  REST=${REST#*|}
+  TREPRULE=${REST%%|*}
   CONTEXT=${REST##*|}
 
-  addResult "oftask" "${T}|${PROJECT}|0" "yes" "${TNAME} (${PROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
+  addResult "oftask" "${T}|${PROJECT}|0" "yes" "${TNAME} (${PROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}" "img/detail/${THEME}/task${TFLAGGED}${TSOON}${TOVERDUE}.png"
 done
 
 getXMLResults
