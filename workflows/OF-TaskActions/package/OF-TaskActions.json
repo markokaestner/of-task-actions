@@ -1,5 +1,5 @@
 {
-    "version": 2.0,
+    "version": 2.1,
     "download_url": "https://github.com/markokaestner/alfred2/blob/master/workflows/OF-TaskActions/package/OF-TaskActions.alfredworkflow?raw=true",
-    "description": "show inbox tasks, show tasks done today, new task detail display"
+    "description": "search for perspectives, more task actions, improved project search performance"
 }
