@@ -6,6 +6,17 @@
 	<string>com.markokaestner.oftaskactions</string>
 	<key>connections</key>
 	<dict>
+		<key>1243AC6D-2702-42AD-B52F-800E1DB6FEE4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>90F62233-867B-40D6-A552-5FF0F454ABC5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>1B7FB3FD-8C2E-471A-B172-B2DD4CB524FD</key>
 		<array>
 			<dict>
@@ -114,6 +125,14 @@
 				<string>EEDAAD5D-6787-4076-9E9A-BA7B20B9B557</string>
 				<key>modifiers</key>
 				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>1243AC6D-2702-42AD-B52F-800E1DB6FEE4</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
@@ -780,10 +799,10 @@ deferdue)
 note)
 	/usr/bin/osascript addNote.scpt "${TID}"
    ;;
-gotoproject)
+project)
 	/usr/bin/osascript -e "tell application \"Alfred 2\" to search \".oftp ${TPROJECT}\""
    ;;
-gotocontext)
+context)
 	/usr/bin/osascript -e "tell application \"Alfred 2\" to search \".oftc ${TCONTEXT}\""
    ;;
 *)
@@ -823,11 +842,79 @@ IFS="$OLDIFS"</string>
 			<key>uid</key>
 			<string>9911EC15-6E11-4AEA-9622-19229358A835</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>. workflowHandler.sh
+
+TASK=$(getPref task 0)
+
+OLDIFS="$IFS"
+IFS="|"
+T=($TASK)
+TID=${T[0]}
+TNAME=${T[1]}
+TCONTEXT=${T[9]}
+TPROJECT=${T[10]}
+
+case "{query}" in
+
+project)
+	/usr/bin/osascript changeProject.scpt "${TID}"
+   ;;
+context)
+	/usr/bin/osascript changeContext.scpt "${TID}"
+   ;;
+*)
+	
+   ;;
+esac
+
+IFS="$OLDIFS"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>1243AC6D-2702-42AD-B52F-800E1DB6FEE4</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>OF: TaskActions</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>90F62233-867B-40D6-A552-5FF0F454ABC5</string>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>1243AC6D-2702-42AD-B52F-800E1DB6FEE4</key>
+		<dict>
+			<key>ypos</key>
+			<real>1160</real>
+		</dict>
 		<key>1B7FB3FD-8C2E-471A-B172-B2DD4CB524FD</key>
 		<dict>
 			<key>ypos</key>
@@ -897,6 +984,11 @@ IFS="$OLDIFS"</string>
 		<dict>
 			<key>ypos</key>
 			<real>110</real>
+		</dict>
+		<key>90F62233-867B-40D6-A552-5FF0F454ABC5</key>
+		<dict>
+			<key>ypos</key>
+			<real>1160</real>
 		</dict>
 		<key>9911EC15-6E11-4AEA-9622-19229358A835</key>
 		<dict>
