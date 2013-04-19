@@ -17,7 +17,7 @@ RESULTS=()
 # $7 autocomplete
 ###############################################################################
 addResult() {
-  RESULT="<item uid='$1' arg='$2' valid='$6' autocomplete='$7'><title>$3</title><subtitle>$4</subtitle><icon>$5</icon></item>"
+  RESULT="<item uid='$(xmlEncode "$1")' arg='$(xmlEncode "$2")' valid='$6' autocomplete='$7'><title>$(xmlEncode "$3")</title><subtitle>$(xmlEncode "$4")</subtitle><icon>$(xmlEncode "$5")</icon></item>"
   RESULTS+=("$RESULT")
 }
 
@@ -32,10 +32,17 @@ getXMLResults() {
 #  fi
 
   for R in ${RESULTS[*]}; do
-    echo "$R" | tr '\n' ' '
+    echo "$R"
   done
 
   echo "</items>"
+}
+
+###############################################################################
+# Escapes XML special characters with their entities
+###############################################################################
+xmlEncode() {
+  echo "$1" | sed 's/\n/ /' | sed 's/&/&amp;/' | sed 's/>/&gt;/' | sed 's/</&lt;/' | sed "s/\'/&apos;/" | sed 's/\"/&quot;/'
 }
 
 ###############################################################################
