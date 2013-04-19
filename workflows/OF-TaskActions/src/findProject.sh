@@ -34,8 +34,3 @@ done
 getXMLResults
 
 IFS=$OLDIFS
-ject${PSINGLE}.png</icon></item>"
-done
-echo "</items>"
-
-IFS=$OLDIFS
