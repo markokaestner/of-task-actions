@@ -157,19 +157,19 @@
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
-				<integer>63</integer>
+				<integer>6</integer>
 				<key>keyword</key>
-				<string>.oftheme</string>
+				<string>.ofti</string>
+				<key>runningsubtext</key>
+				<string>Loading tasks...</string>
 				<key>script</key>
 				<string>. workflowHandler.sh
 
-addResult "oftheme" "light" "yes" "Light theme" "" "img/detail/light/view.png"
+setPref "lastSearch" ".ofti" 0
 
-addResult "oftheme" "dark" "yes" "Dark theme" "" "img/detail/dark/view.png"
-
-getXMLResults</string>
+./getTasksInInbox.sh</string>
 				<key>title</key>
-				<string>OmniFocus: Select theme</string>
+				<string>OmniFocus: Show tasks in inbox</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -178,25 +178,29 @@ getXMLResults</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>CD421C32-4DFF-4081-83AA-124CFA799A2C</string>
+			<string>2F53D276-3EFB-4A2F-A2CE-9A3B2602729B</string>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>escaping</key>
-				<integer>63</integer>
+				<integer>6</integer>
 				<key>keyword</key>
-				<string>.offp</string>
+				<string>.oftc</string>
 				<key>runningsubtext</key>
-				<string>Searching projects...</string>
+				<string>Loading tasks...</string>
 				<key>script</key>
-				<string>./findProject.sh "{query}"</string>
+				<string>. workflowHandler.sh
+
+setPref "lastSearch" ".oftc {query}" 0
+
+./getTasksByContext.sh "{query}"</string>
 				<key>subtext</key>
-				<string>Enter part of project name</string>
+				<string>Enter context name</string>
 				<key>title</key>
-				<string>OmniFocus: Find project</string>
+				<string>OmniFocus: Show tasks with context</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -205,25 +209,48 @@ getXMLResults</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>376B7914-BA86-4DCC-8AE3-59E9F4B620CF</string>
+			<string>1B7FB3FD-8C2E-471A-B172-B2DD4CB524FD</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>6</integer>
+				<key>script</key>
+				<string>. workflowHandler.sh
+
+setPref "task" "{query}" 0
+
+/usr/bin/osascript -e "tell application \"Alfred 2\" to search \".oftd\""</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F776373A-EC81-4548-8127-958986750A66</string>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>1</integer>
+				<integer>0</integer>
 				<key>escaping</key>
-				<integer>63</integer>
+				<integer>6</integer>
 				<key>keyword</key>
-				<string>.offc</string>
+				<string>.oftp</string>
 				<key>runningsubtext</key>
-				<string>Loading contexts...</string>
+				<string>Loading tasks...</string>
 				<key>script</key>
-				<string>./findContext.sh "{query}"</string>
+				<string>. workflowHandler.sh
+
+setPref "lastSearch" ".oftp {query}" 0
+
+./getTasksByProject.sh "{query}"</string>
 				<key>subtext</key>
-				<string>Enter part of context name</string>
+				<string>Enter project name</string>
 				<key>title</key>
-				<string>OmniFocus: Find context</string>
+				<string>OmniFocus: Show tasks in project</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -232,7 +259,72 @@ getXMLResults</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>FE7F94F8-EC51-42C7-BD65-3F68A63E060F</string>
+			<string>5B4B3531-F9BE-40EB-8315-AC6E4599AD24</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>.oftv</string>
+				<key>runningsubtext</key>
+				<string>Loading tasks...</string>
+				<key>script</key>
+				<string>. workflowHandler.sh
+
+setPref "lastSearch" ".oftv {query}" 0
+
+THEME=$(getPref theme 1)
+if [ -z "$THEME" ]; then
+	THEME="dark"
+fi
+
+/usr/bin/osascript getTasksByPerspective.scpt {query} "$THEME"</string>
+				<key>subtext</key>
+				<string>Enter perspective name</string>
+				<key>title</key>
+				<string>OmniFocus: Show tasks in perspective</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>417EDFE4-EEA3-4586-BACB-72B5CD1488FA</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>.ofdt</string>
+				<key>runningsubtext</key>
+				<string>Loading tasks...</string>
+				<key>script</key>
+				<string>. workflowHandler.sh
+
+setPref "lastSearch" ".ofdt" 0
+
+./getTasksDoneToday.sh</string>
+				<key>title</key>
+				<string>OmniFocus: Show tasks completed today</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>8F9DE859-5A9C-4B49-B378-6E59FC28CB26</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -309,43 +401,6 @@ IFS="$OLDIFS"</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>62</integer>
-				<key>script</key>
-				<string>set temp to "{query}"
-if temp is not "" then
-	tell application "Alfred 2" to search ".oftp " &amp; temp
-end if</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>302013FC-E146-4CD9-814E-5AA0154C335F</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>6</integer>
-				<key>script</key>
-				<string>. workflowHandler.sh
-
-setPref "task" "{query}" 0
-
-/usr/bin/osascript -e "tell application \"Alfred 2\" to search \".oftd\""</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>F776373A-EC81-4548-8127-958986750A66</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -392,48 +447,20 @@ setPref "task" "{query}" 0
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>script</key>
-				<string>. workflowHandler.sh
-
-setPref "theme" "{query}" 1
-
-echo "{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>9A457476-6781-4B5A-A7BC-88BF5D4180C7</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>63</integer>
 				<key>keyword</key>
-				<string>.oftv</string>
+				<string>.offp</string>
 				<key>runningsubtext</key>
-				<string>Loading tasks...</string>
+				<string>Searching projects...</string>
 				<key>script</key>
-				<string>. workflowHandler.sh
-
-setPref "lastSearch" ".oftv {query}" 0
-
-THEME=$(getPref theme 1)
-if [ -z "$THEME" ]; then
-	THEME="dark"
-fi
-
-/usr/bin/osascript getTasksByPerspective.scpt {query} "$THEME"</string>
+				<string>./findProject.sh "{query}"</string>
 				<key>subtext</key>
-				<string>Enter perspective name</string>
+				<string>Enter part of project name</string>
 				<key>title</key>
-				<string>OmniFocus: Show tasks in perspective</string>
+				<string>OmniFocus: Find project</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -442,7 +469,52 @@ fi
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>417EDFE4-EEA3-4586-BACB-72B5CD1488FA</string>
+			<string>376B7914-BA86-4DCC-8AE3-59E9F4B620CF</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>62</integer>
+				<key>script</key>
+				<string>set temp to "{query}"
+if temp is not "" then
+	tell application "Alfred 2" to search ".oftp " &amp; temp
+end if</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>302013FC-E146-4CD9-814E-5AA0154C335F</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>.offc</string>
+				<key>runningsubtext</key>
+				<string>Loading contexts...</string>
+				<key>script</key>
+				<string>./findContext.sh "{query}"</string>
+				<key>subtext</key>
+				<string>Enter part of context name</string>
+				<key>title</key>
+				<string>OmniFocus: Find context</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>FE7F94F8-EC51-42C7-BD65-3F68A63E060F</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -461,120 +533,6 @@ end if</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>538E276F-6A73-4474-913B-ADA39F36E65B</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>6</integer>
-				<key>keyword</key>
-				<string>.ofti</string>
-				<key>runningsubtext</key>
-				<string>Loading tasks...</string>
-				<key>script</key>
-				<string>. workflowHandler.sh
-
-setPref "lastSearch" ".ofti" 0
-
-./getTasksInInbox.sh</string>
-				<key>title</key>
-				<string>OmniFocus: Show tasks in inbox</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>2F53D276-3EFB-4A2F-A2CE-9A3B2602729B</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>6</integer>
-				<key>keyword</key>
-				<string>.oftp</string>
-				<key>runningsubtext</key>
-				<string>Loading tasks...</string>
-				<key>script</key>
-				<string>. workflowHandler.sh
-
-setPref "lastSearch" ".oftp {query}" 0
-
-./getTasksByProject.sh "{query}"</string>
-				<key>subtext</key>
-				<string>Enter project name</string>
-				<key>title</key>
-				<string>OmniFocus: Show tasks in project</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>5B4B3531-F9BE-40EB-8315-AC6E4599AD24</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>6</integer>
-				<key>keyword</key>
-				<string>.oftc</string>
-				<key>runningsubtext</key>
-				<string>Loading tasks...</string>
-				<key>script</key>
-				<string>. workflowHandler.sh
-
-setPref "lastSearch" ".oftc {query}" 0
-
-./getTasksByContext.sh "{query}"</string>
-				<key>subtext</key>
-				<string>Enter context name</string>
-				<key>title</key>
-				<string>OmniFocus: Show tasks with context</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>1B7FB3FD-8C2E-471A-B172-B2DD4CB524FD</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Theme set to {query}</string>
-				<key>title</key>
-				<string>OF: TaskActions</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>3CE76F56-EC88-4255-80EF-3BE3F9D75A41</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -606,35 +564,6 @@ setPref "lastSearch" ".oftc {query}" 0
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>keyword</key>
-				<string>.ofdt</string>
-				<key>runningsubtext</key>
-				<string>Loading tasks...</string>
-				<key>script</key>
-				<string>. workflowHandler.sh
-
-setPref "lastSearch" ".ofdt" 0
-
-./getTasksDoneToday.sh</string>
-				<key>title</key>
-				<string>OmniFocus: Show tasks completed today</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>8F9DE859-5A9C-4B49-B378-6E59FC28CB26</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>escaping</key>
 				<integer>62</integer>
 				<key>script</key>
@@ -649,6 +578,77 @@ end if</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>327F670C-B57A-4FE1-A976-7D847010B880</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>.oftheme</string>
+				<key>script</key>
+				<string>. workflowHandler.sh
+
+addResult "oftheme" "light" "Light theme" "" "img/detail/light/view.png" "yes"
+
+addResult "oftheme" "dark" "Dark theme" "" "img/detail/dark/view.png" "yes"
+
+getXMLResults</string>
+				<key>title</key>
+				<string>OmniFocus: Select theme</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>CD421C32-4DFF-4081-83AA-124CFA799A2C</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>. workflowHandler.sh
+
+setPref "theme" "{query}" 1
+
+echo "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9A457476-6781-4B5A-A7BC-88BF5D4180C7</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Theme set to {query}</string>
+				<key>title</key>
+				<string>OF: TaskActions</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>3CE76F56-EC88-4255-80EF-3BE3F9D75A41</string>
 		</dict>
 	</array>
 	<key>readme</key>

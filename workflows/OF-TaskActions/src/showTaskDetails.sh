@@ -26,24 +26,24 @@ TDONE=${T[11]}
 
 RANDOMUID=$(date +"%s")=
 
-addResult "${RANDOMUID}1" "back" "yes" "Back" "Go back to previous search" "img/detail/${THEME}/back.png"
+addResult "${RANDOMUID}1" "back" "Back" "Go back to previous search" "img/detail/${THEME}/back.png" "yes"
 
 if [ "$TDONE" = "1" ]; then
-  addResult "${RANDOMUID}2" "done" "yes" "${TNAME}" "Klick to uncheck" "img/detail/${THEME}/done.png"
+  addResult "${RANDOMUID}2" "done" "${TNAME}" "Klick to uncheck" "img/detail/${THEME}/done.png" "yes"
 else
-  addResult "${RANDOMUID}3" "done" "yes" "${TNAME}" "Klick to check" "img/detail/${THEME}/task${TSOON}${TOVERDUE}.png"
+  addResult "${RANDOMUID}3" "done" "${TNAME}" "Klick to check" "img/detail/${THEME}/task${TFLAGGED}${TSOON}${TOVERDUE}.png" "yes"
 fi
-addResult "${RANDOMUID}4" "gotoproject" "yes" "${PROJECT}" "Project" "img/detail/${THEME}/project.png"
-addResult "${RANDOMUID}5" "gotocontext" "yes" "${CONTEXT}" "Context" "img/detail/${THEME}/context.png"
-addResult "${RANDOMUID}6" "deferstart" "yes" "${TSTART}" "Start date" "img/detail/${THEME}/cal.png"
-addResult "${RANDOMUID}7" "deferdue" "yes" "${TDUE}" "Due date" "img/detail/${THEME}/cal.png"
+addResult "${RANDOMUID}4" "gotoproject" "${PROJECT}" "Project" "img/detail/${THEME}/project.png" "yes"
+addResult "${RANDOMUID}5" "gotocontext" "${CONTEXT}" "Context" "img/detail/${THEME}/context.png" "yes"
+addResult "${RANDOMUID}6" "deferstart" "${TSTART}" "Start date" "img/detail/${THEME}/cal.png" "yes"
+addResult "${RANDOMUID}7" "deferdue" "${TDUE}" "Due date" "img/detail/${THEME}/cal.png" "yes"
 
 if [ "${TFLAGGED}" = "0" ]; then
-  addResult "${RANDOMUID}8" "flag" "yes" "Flag" "Flag the task" "img/detail/${THEME}/flag.png"
+  addResult "${RANDOMUID}8" "flag" "Flag" "Flag the task" "img/detail/${THEME}/flag.png" "yes"
 else
-  addResult "${RANDOMUID}9" "flag" "yes" "Un-Flag" "Un-Flag the task" "img/detail/${THEME}/flag.png"
+  addResult "${RANDOMUID}9" "flag" "Un-Flag" "Un-Flag the task" "img/detail/${THEME}/flag.png" "yes"
 fi
-addResult "${RANDOMUID}10" "${SEARCH:4:1}view" "yes" "Show in OF" "Open the task in OF" "img/detail/${THEME}/view.png"
+addResult "${RANDOMUID}10" "${SEARCH:4:1}view" "Show in OF" "Open the task in OF" "img/detail/${THEME}/view.png" "yes"
 
 getXMLResults
 

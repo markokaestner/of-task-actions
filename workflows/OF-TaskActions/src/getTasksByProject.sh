@@ -42,7 +42,7 @@ for T in ${TASKS[*]}; do
   TREPRULE=${REST%%|*}
   CONTEXT=${REST##*|}
 
-  addResult "oftask" "${T}|${PROJECT}|0" "yes" "${TNAME} (${PROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}" "img/detail/${THEME}/task${TFLAGGED}${TSOON}${TOVERDUE}.png"
+  addResult "${TID}" "${T}|${PROJECT}|0" "${TNAME} (${PROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${CONTEXT}" "img/detail/${THEME}/task${TFLAGGED}${TSOON}${TOVERDUE}.png" "yes"
 done
 
 getXMLResults

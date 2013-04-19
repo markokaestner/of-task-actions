@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. workflowHandler.sh
+
 QUERY=$1
 
 OFOC="com.omnigroup.OmniFocus"
@@ -11,8 +13,6 @@ OLDIFS=$IFS
 IFS='
 '
 PROJECTS=$(sqlite3 ${HOME}/Library/Caches/${OFOC}/OmniFocusDatabase2 "${SQL}")
-
-echo "<?xml version='1.0'?><items>"
 
 for P in ${PROJECTS[*]}; do
   PID=${P%%|*}
@@ -27,7 +27,14 @@ for P in ${PROJECTS[*]}; do
   REST=${REST#*|}
   PSINGLE=${REST%%|*}
   PFOLDER=${REST##*|}
-  echo "<item uid='${PID}' arg='${PNAME}'><title>${PNAME} (${PFOLDER})</title><subtitle>Status: ${PSTATUS}  |  Available Tasks: ${PAVAILABLE}</subtitle><icon>img/project${PSINGLE}.png</icon></item>"
+
+  addResult "${PID}" "${PNAME}" "${PNAME} (${PFOLDER})" "Status: ${PSTATUS}  |  Available Tasks: ${PAVAILABLE}" "img/project${PSINGLE}.png" "yes"
+done
+
+getXMLResults
+
+IFS=$OLDIFS
+ject${PSINGLE}.png</icon></item>"
 done
 echo "</items>"
 

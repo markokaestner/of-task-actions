@@ -10,14 +10,14 @@ RESULTS=()
 #
 # $1 uid
 # $2 arg
-# $3 valid
-# $4 title
-# $5 subtitle
-# $6 icon
+# $3 title
+# $4 subtitle
+# $5 icon
+# $6 valid
 # $7 autocomplete
 ###############################################################################
 addResult() {
-  RESULT="<item uid='$1' arg='$2' valid='$3' autocomplete='$7'><title>$4</title><subtitle>$5</subtitle><icon>$6</icon></item>"
+  RESULT="<item uid='$(xmlEncode "$1")' arg='$(xmlEncode "$2")' valid='$6' autocomplete='$7'><title>$(xmlEncode "$3")</title><subtitle>$(xmlEncode "$4")</subtitle><icon>$(xmlEncode "$5")</icon></item>"
   RESULTS+=("$RESULT")
 }
 
@@ -32,10 +32,17 @@ getXMLResults() {
 #  fi
 
   for R in ${RESULTS[*]}; do
-    echo "$R" | tr '\n' ' '
+    echo "$R"
   done
 
   echo "</items>"
+}
+
+###############################################################################
+# Escapes XML special characters with their entities
+###############################################################################
+xmlEncode() {
+  echo "$1" | sed 's/\n/ /' | sed 's/&/&amp;/' | sed 's/>/&gt;/' | sed 's/</&lt;/' | sed "s/\'/&apos;/" | sed 's/\"/&quot;/'
 }
 
 ###############################################################################
@@ -46,11 +53,28 @@ getBundleId() {
 }
 
 ###############################################################################
+# Get the workflow data dir
+###############################################################################
+getDataDir() {
+  local BUNDLEID=$(getBundleId)
+  echo "${NVPREFS}${BUNDLEID}"
+}
+
+###############################################################################
+# Get the workflow cache dri
+###############################################################################
+getCacheDir() {
+  local BUNDLEID=$(getBundleId)
+  echo "${VPREFS}${BUNDLEID}"
+}
+
+###############################################################################
 # Save key=value to the workflow properties
 #
 # $1 key
 # $2 value
 # $3 non-volatile 0/1
+# $4 filename (optional, filename will be "settings" if not specified)
 ###############################################################################
 setPref() {
   local BUNDLEID=$(getBundleId)
@@ -64,7 +88,12 @@ setPref() {
     mkdir -p "$PREFDIR"
   fi
 
-  local PREFFILE="${PREFDIR}/settings"
+  if [ -z "$4" ]; then
+    local PREFFILE="${PREFDIR}/settings"
+  else
+    local PREFFILE="${PREFDIR}/$4"
+  fi
+
   if [ ! -f "$PREFFILE" ]; then
     touch "$PREFFILE"
   fi
@@ -73,7 +102,7 @@ setPref() {
   if [ "$KEY_EXISTS" = "0" ]; then
     echo "$1=$2" >> "$PREFFILE"
   else
-    sed -i "" "s/$1=.*/$1=$2/" "$PREFFILE"
+    sed -i "" s/"$1=.*"/"$1=$2"/ "$PREFFILE"
   fi
 }
 
@@ -82,6 +111,7 @@ setPref() {
 #
 # $1 key
 # $2 non-volatile 0/1
+# $3 filename (optional, filename will be "settings" if not specified)
 ###############################################################################
 getPref() {
   local BUNDLEID=$(getBundleId)
@@ -95,7 +125,12 @@ getPref() {
     return
   fi
 
-  local PREFFILE="${PREFDIR}/settings"
+  if [ -z "$3" ]; then
+    local PREFFILE="${PREFDIR}/settings"
+  else
+    local PREFFILE="${PREFDIR}/$3"
+  fi
+
   if [ ! -f "$PREFFILE" ]; then
     return
   fi
