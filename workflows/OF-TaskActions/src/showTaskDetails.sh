@@ -35,8 +35,8 @@ else
 fi
 addResult "${RANDOMUID}4" "project" "${PROJECT}" "[↩] Go to project   [⌘] Change project" "img/detail/${THEME}/project.png" "yes"
 addResult "${RANDOMUID}5" "context" "${CONTEXT}" "[↩] Go to context   [⌘] Change context" "img/detail/${THEME}/context.png" "yes"
-addResult "${RANDOMUID}6" "deferstart" "${TSTART}" "[↩] Defer start date" "img/detail/${THEME}/cal.png" "yes"
-addResult "${RANDOMUID}7" "deferdue" "${TDUE}" "[↩] Defer due date" "img/detail/${THEME}/cal.png" "yes"
+addResult "${RANDOMUID}6" "deferstart" "${TSTART}" "[↩] Defer start date" "img/detail/${THEME}/start.png" "yes"
+addResult "${RANDOMUID}7" "deferdue" "${TDUE}" "[↩] Defer due date" "img/detail/${THEME}/due.png" "yes"
 
 if [ "${TFLAGGED}" = "0" ]; then
   addResult "${RANDOMUID}8" "flag" "Flag" "[↩] Flag" "img/detail/${THEME}/flag.png" "yes"
