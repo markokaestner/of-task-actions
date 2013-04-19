@@ -102,7 +102,7 @@ setPref() {
   if [ "$KEY_EXISTS" = "0" ]; then
     echo "$1=$2" >> "$PREFFILE"
   else
-    sed -i "" "s/$1=.*/$1=$2/" "$PREFFILE"
+    sed -i "" s/"$1=.*"/"$1=$2"/ "$PREFFILE"
   fi
 }
 
