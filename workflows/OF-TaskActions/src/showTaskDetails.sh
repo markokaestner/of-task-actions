@@ -43,7 +43,8 @@ if [ "${TFLAGGED}" = "0" ]; then
 else
   addResult "${RANDOMUID}9" "flag" "Un-Flag" "Un-Flag the task" "img/detail/${THEME}/flag.png" "yes"
 fi
-addResult "${RANDOMUID}10" "${SEARCH:4:1}view" "Show in OF" "Open the task in OF" "img/detail/${THEME}/view.png" "yes"
+addResult "${RANDOMUID}10" "note" "Add Note" "Add note to task" "img/detail/${THEME}/clip.png" "yes"
+addResult "${RANDOMUID}11" "${SEARCH:4:1}view" "Show in OF" "Open the task in OF" "img/detail/${THEME}/view.png" "yes"
 
 getXMLResults
 
