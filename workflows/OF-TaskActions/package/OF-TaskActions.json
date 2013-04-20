@@ -1,5 +1,5 @@
 {
-    "version": 2.21,
+    "version": 2.3,
     "download_url": "https://github.com/markokaestner/alfred2/blob/master/workflows/OF-TaskActions/package/OF-TaskActions.alfredworkflow?raw=true",
-    "description": "bugfixes"
+    "description": "fixed workflow not working with german umlauts"
 }
