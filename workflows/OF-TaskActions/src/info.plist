@@ -342,10 +342,9 @@ setPref "lastSearch" ".ofdt" 0
 				<string>Loading tasks...</string>
 				<key>script</key>
 				<string>. workflowHandler.sh
-
-setPref "lastSearch" ".oftp {query}" 0
-
-./getTasksByProject.sh "{query}"</string>
+QUERY=$(./normalise "{query}")
+setPref "lastSearch" ".oftp $QUERY" 0
+./getTasksByProject.sh "$QUERY"</string>
 				<key>subtext</key>
 				<string>Enter project name</string>
 				<key>title</key>
@@ -367,9 +366,8 @@ setPref "lastSearch" ".oftp {query}" 0
 				<integer>6</integer>
 				<key>script</key>
 				<string>. workflowHandler.sh
-
-setPref "task" "{query}" 0
-
+QUERY=$(./normalise "{query}")
+setPref "task" "$QUERY" 0
 /usr/bin/osascript -e "tell application \"Alfred 2\" to search \".oftd\""</string>
 				<key>type</key>
 				<integer>0</integer>
@@ -392,10 +390,9 @@ setPref "task" "{query}" 0
 				<string>Loading tasks...</string>
 				<key>script</key>
 				<string>. workflowHandler.sh
-
-setPref "lastSearch" ".oftc {query}" 0
-
-./getTasksByContext.sh "{query}"</string>
+QUERY=$(./normalise "{query}")
+setPref "lastSearch" ".oftc $QUERY" 0
+./getTasksByContext.sh "$QUERY"</string>
 				<key>subtext</key>
 				<string>Enter context name</string>
 				<key>title</key>
@@ -424,14 +421,15 @@ setPref "lastSearch" ".oftc {query}" 0
 				<key>script</key>
 				<string>. workflowHandler.sh
 
-setPref "lastSearch" ".oftv {query}" 0
+QUERY=$(./normalise "{query}")
+setPref "lastSearch" ".oftv $QUERY" 0
 
 THEME=$(getPref theme 1)
 if [ -z "$THEME" ]; then
 	THEME="dark"
 fi
 
-/usr/bin/osascript getTasksByPerspective.scpt {query} "$THEME"</string>
+/usr/bin/osascript getTasksByPerspective.scpt "$QUERY" "$THEME"</string>
 				<key>subtext</key>
 				<string>Enter perspective name</string>
 				<key>title</key>
@@ -499,7 +497,8 @@ end if</string>
 				<key>runningsubtext</key>
 				<string>Searching projects...</string>
 				<key>script</key>
-				<string>./findProject.sh "{query}"</string>
+				<string>QUERY=$(./normalise "{query}")
+./findProject.sh "$QUERY"</string>
 				<key>subtext</key>
 				<string>Enter part of project name</string>
 				<key>title</key>
@@ -567,7 +566,8 @@ end if</string>
 				<key>runningsubtext</key>
 				<string>Loading contexts...</string>
 				<key>script</key>
-				<string>./findContext.sh "{query}"</string>
+				<string>QUERY=$(./normalise "{query}")
+./findContext.sh "$QUERY"</string>
 				<key>subtext</key>
 				<string>Enter part of context name</string>
 				<key>title</key>
@@ -594,7 +594,8 @@ end if</string>
 				<key>runningsubtext</key>
 				<string>Loading perspectives...</string>
 				<key>script</key>
-				<string>/usr/bin/osascript findPerspective.scpt "{query}"</string>
+				<string>QUERY=$(./normalise "{query}")
+/usr/bin/osascript findPerspective.scpt "$QUERY"</string>
 				<key>subtext</key>
 				<string>Enter part of perspective name</string>
 				<key>title</key>
