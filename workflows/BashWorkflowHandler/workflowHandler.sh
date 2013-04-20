@@ -32,7 +32,7 @@ getXMLResults() {
 #  fi
 
   for R in ${RESULTS[*]}; do
-    echo "$R"
+    echo "$R" | tr "\n" " "
   done
 
   echo "</items>"
@@ -42,7 +42,7 @@ getXMLResults() {
 # Escapes XML special characters with their entities
 ###############################################################################
 xmlEncode() {
-  echo "$1" | sed 's/\n/ /' | sed 's/&/&amp;/' | sed 's/>/&gt;/' | sed 's/</&lt;/' | sed "s/\'/&apos;/" | sed 's/\"/&quot;/'
+  echo "$1" | sed 's/&/&amp;/' | sed 's/>/&gt;/' | sed 's/</&lt;/' | sed "s/\'/&apos;/" | sed 's/\"/&quot;/'
 }
 
 ###############################################################################
