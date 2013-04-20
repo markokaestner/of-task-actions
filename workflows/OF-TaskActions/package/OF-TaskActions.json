@@ -1,5 +1,5 @@
 {
-    "version": 2.2,
+    "version": 2.21,
     "download_url": "https://github.com/markokaestner/alfred2/blob/master/workflows/OF-TaskActions/package/OF-TaskActions.alfredworkflow?raw=true",
-    "description": "add note, change project and change context task actions, bugfixes"
+    "description": "bugfixes"
 }
