@@ -12,12 +12,20 @@ Use Alfred to:
 
 * Search for projects
 * Search for contexts
+* Search for perspectives
 * View tasks of a project
 * View tasks of a context
 * View tasks of a perspective
-* Mark tasks complete
-* Flag tasks
-* Open tasks in OmniFocus
+* View tasks in Inbox
+* View tasks completed today
+* Act on your tasks:
+    * Check/Uncheck
+    * Flag/Un-flag
+	* Change Project
+	* Change context
+	* Defer start/due date
+	* Append a note
+    * Open in OmniFocus
 
 Installation
 ------------
@@ -28,33 +36,61 @@ Usage
 -----
 
 ### Keywords
+
+#### Manage Projects
+
 * **`.offp [part of project name]`** - Search for projects
     * **`ENTER`** - Show available tasks of selected project
 
-![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_offp.png)
-
 * **`.oftp [project name]`** - Show available tasks of project
-    * **`ENTER`** - Open task in OmniFocus
-    * **`ALT + ENTER`** - Mark task completed
-    * **`CMD + ENTER`** - Flag task
+    * **`ENTER`** - Show details of selected task
 
-![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_oftp.png)
-
-* **`.oftv [perpective name]`** - Show tasks in perspective
-    * **`ENTER`** - Open task in OmniFocus
-    * **`ALT + ENTER`** - Mark task completed
-    * **`CMD + ENTER`** - Flag task
-
-![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_oftv.png)
+#### Manage Contexts
 
 * **`.offc [part of context name]`** - Search for contexts
     * **`ENTER`** - Show available tasks of selected context
 
-![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_offc.png)
-
 * **`.oftc [context name]`** - Show tasks with context
-    * **`ENTER`** - Open task in OmniFocus
-    * **`ALT + ENTER`** - Mark task completed
-    * **`CMD + ENTER`** - Flag task
+    * **`ENTER`** - Show details of selected task
 
-![ ](https://dl.dropbox.com/u/5453663/OF-TaskActions_oftc.png)
+#### Manage Perspectives
+
+* **`.offv [part of perspective name]`** - Search for perspectives
+    * **`ENTER`** - Show available tasks of selected perspective
+
+* **`.oftv [perpective name]`** - Show tasks in perspective
+    * **`ENTER`** - Show details of selected task
+
+#### Manage Tasks
+
+* **`.ofti`** - Show tasks in Inbox
+    * **`ENTER`** - Show details of selected task
+
+* **`.ofdt`** - Show tasks completed today
+    * **`ENTER`** - Show details of selected task
+
+#### Act on your Tasks
+
+![](https://dl.dropboxusercontent.com/u/5453663/OF-TaskActions_oftd.png)
+
+#### Settings
+* **`.oftheme`** - switch between dark and light theme
+
+### Hotkeys
+
+* **`⇧⌃I`** - Show tasks in Inbox
+* **`⇧⌃P`** - Search for projects
+* **`⇧⌃C`** - Search for contexts
+* **`⇧⌃V`** - Search for perspectives
+
+Credits
+-------
+The task detail icons are from the "Free Wireframe Toolbar Icons for GUI designers", available under a Creative Commons Attribution-Noncommercial license.
+© 2011, [gentleface](http://www.gentleface.com/).
+
+Some of the other action icons are adapted from the [Tango Desktop Project](http://tango.freedesktop.org/).
+
+The task defer AppleScript is based on the script created by [Dan Byler](http://bylr.net/).
+
+The change project/context AppleScripts are based on the scripts created by [tannie](http://tanniespace.com).
+
