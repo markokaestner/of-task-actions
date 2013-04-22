@@ -303,10 +303,8 @@
 				<string>Loading tasks...</string>
 				<key>script</key>
 				<string>. workflowHandler.sh
-
 setPref "lastSearch" ".ofti" 0
-
-./getTasksInInbox.sh</string>
+./getTasksInInbox.sh 2&gt;&amp;1 | tee ofti.log</string>
 				<key>title</key>
 				<string>OmniFocus: Show tasks in inbox</string>
 				<key>type</key>
@@ -355,10 +353,8 @@ setPref "lastSearch" ".ofti" 0
 				<string>Loading tasks...</string>
 				<key>script</key>
 				<string>. workflowHandler.sh
-
 setPref "lastSearch" ".ofdt" 0
-
-./getTasksDoneToday.sh</string>
+./getTasksDoneToday.sh 2&gt;&amp;1 | tee ofdt.log</string>
 				<key>title</key>
 				<string>OmniFocus: Show tasks completed today</string>
 				<key>type</key>
@@ -409,7 +405,7 @@ setPref "lastSearch" ".ofdt" 0
 				<string>. workflowHandler.sh
 QUERY=$(./normalise "{query}")
 setPref "lastSearch" ".oftp $QUERY" 0
-./getTasksByProject.sh "$QUERY"</string>
+./getTasksByProject.sh "$QUERY" 2&gt;&amp;1 | tee oftp.log</string>
 				<key>subtext</key>
 				<string>Enter project name</string>
 				<key>title</key>
@@ -457,7 +453,7 @@ setPref "task" "$QUERY" 0
 				<string>. workflowHandler.sh
 QUERY=$(./normalise "{query}")
 setPref "lastSearch" ".oftp $QUERY" 0
-./getTasksByFolder.sh "$QUERY"</string>
+./getTasksByFolder.sh "$QUERY" 2&gt;&amp;1 | tee oftf.log</string>
 				<key>subtext</key>
 				<string>Enter folder name</string>
 				<key>title</key>
@@ -487,7 +483,7 @@ setPref "lastSearch" ".oftp $QUERY" 0
 				<string>. workflowHandler.sh
 QUERY=$(./normalise "{query}")
 setPref "lastSearch" ".oftc $QUERY" 0
-./getTasksByContext.sh "$QUERY"</string>
+./getTasksByContext.sh "$QUERY" 2&gt;&amp;1 | tee oftc.log</string>
 				<key>subtext</key>
 				<string>Enter context name</string>
 				<key>title</key>
@@ -515,16 +511,13 @@ setPref "lastSearch" ".oftc $QUERY" 0
 				<string>Loading tasks...</string>
 				<key>script</key>
 				<string>. workflowHandler.sh
-
 QUERY=$(./normalise "{query}")
 setPref "lastSearch" ".oftv $QUERY" 0
-
 THEME=$(getPref theme 1)
 if [ -z "$THEME" ]; then
 	THEME="dark"
 fi
-
-/usr/bin/osascript getTasksByPerspective.scpt "$QUERY" "$THEME"</string>
+/usr/bin/osascript getTasksByPerspective.scpt "$QUERY" "$THEME" 2&gt;&amp;1 | tee oftv.log</string>
 				<key>subtext</key>
 				<string>Enter perspective name</string>
 				<key>title</key>
@@ -575,7 +568,7 @@ fi
 				<string>Searching projects...</string>
 				<key>script</key>
 				<string>QUERY=$(./normalise "{query}")
-./findProject.sh "$QUERY"</string>
+./findProject.sh "$QUERY" 2&gt;&amp;1 | tee offp.log</string>
 				<key>subtext</key>
 				<string>Enter part of project name</string>
 				<key>title</key>
@@ -645,7 +638,7 @@ end if</string>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>63</integer>
 				<key>keyword</key>
@@ -654,7 +647,7 @@ end if</string>
 				<string>Loading folders...</string>
 				<key>script</key>
 				<string>QUERY=$(./normalise "{query}")
-./findFolder.sh "$QUERY"</string>
+./findFolder.sh "$QUERY" 2&gt;&amp;1 | tee offf.log</string>
 				<key>subtext</key>
 				<string>Enter part of folder name</string>
 				<key>title</key>
@@ -761,7 +754,7 @@ end if</string>
 				<string>Loading contexts...</string>
 				<key>script</key>
 				<string>QUERY=$(./normalise "{query}")
-./findContext.sh "$QUERY"</string>
+./findContext.sh "$QUERY" 2&gt;&amp;1 | tee offc.log</string>
 				<key>subtext</key>
 				<string>Enter part of context name</string>
 				<key>title</key>
@@ -845,7 +838,7 @@ end if</string>
 				<string>Loading perspectives...</string>
 				<key>script</key>
 				<string>QUERY=$(./normalise "{query}")
-/usr/bin/osascript findPerspective.scpt "$QUERY"</string>
+/usr/bin/osascript findPerspective.scpt "$QUERY" 2&gt;&amp;1 | tee offv.log</string>
 				<key>subtext</key>
 				<string>Enter part of perspective name</string>
 				<key>title</key>
@@ -1054,7 +1047,7 @@ IFS="$OLDIFS"</string>
 				<key>keyword</key>
 				<string>.oftd</string>
 				<key>script</key>
-				<string>./showTaskDetails.sh</string>
+				<string>./showTaskDetails.sh 2&gt;&amp;1 | tee oftd.log</string>
 				<key>title</key>
 				<string>OmniFocus: Show task details</string>
 				<key>type</key>
