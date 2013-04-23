@@ -398,18 +398,18 @@ setPref "lastSearch" ".ofdt" 0
 				<key>escaping</key>
 				<integer>6</integer>
 				<key>keyword</key>
-				<string>.oftp</string>
+				<string>.oftf</string>
 				<key>runningsubtext</key>
 				<string>Loading tasks...</string>
 				<key>script</key>
 				<string>. workflowHandler.sh
 QUERY=$(./normalise "{query}")
 setPref "lastSearch" ".oftp $QUERY" 0
-./getTasksByProject.sh "$QUERY" 2&gt;&amp;1 | tee oftp.log</string>
+./getTasksByFolder.sh "$QUERY" 2&gt;&amp;1 | tee oftf.log</string>
 				<key>subtext</key>
-				<string>Enter project name</string>
+				<string>Enter folder name</string>
 				<key>title</key>
-				<string>OmniFocus: Show tasks in project</string>
+				<string>OmniFocus: Show tasks in folder</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -418,7 +418,7 @@ setPref "lastSearch" ".oftp $QUERY" 0
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>5B4B3531-F9BE-40EB-8315-AC6E4599AD24</string>
+			<string>0CB9B681-A718-48DE-B634-3F2C81C3FA77</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -446,18 +446,18 @@ setPref "task" "$QUERY" 0
 				<key>escaping</key>
 				<integer>6</integer>
 				<key>keyword</key>
-				<string>.oftf</string>
+				<string>.oftp</string>
 				<key>runningsubtext</key>
 				<string>Loading tasks...</string>
 				<key>script</key>
 				<string>. workflowHandler.sh
 QUERY=$(./normalise "{query}")
 setPref "lastSearch" ".oftp $QUERY" 0
-./getTasksByFolder.sh "$QUERY" 2&gt;&amp;1 | tee oftf.log</string>
+./getTasksByProject.sh "$QUERY" 2&gt;&amp;1 | tee oftp.log</string>
 				<key>subtext</key>
-				<string>Enter folder name</string>
+				<string>Enter project name</string>
 				<key>title</key>
-				<string>OmniFocus: Show tasks in folder</string>
+				<string>OmniFocus: Show tasks in project</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -466,7 +466,7 @@ setPref "lastSearch" ".oftp $QUERY" 0
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>0CB9B681-A718-48DE-B634-3F2C81C3FA77</string>
+			<string>5B4B3531-F9BE-40EB-8315-AC6E4599AD24</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -531,90 +531,6 @@ fi
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>417EDFE4-EEA3-4586-BACB-72B5CD1488FA</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>action</key>
-				<integer>0</integer>
-				<key>argument</key>
-				<integer>0</integer>
-				<key>hotkey</key>
-				<integer>35</integer>
-				<key>hotmod</key>
-				<integer>393216</integer>
-				<key>hotstring</key>
-				<string>P</string>
-				<key>leftcursor</key>
-				<false/>
-				<key>modsmode</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.hotkey</string>
-			<key>uid</key>
-			<string>C2D5744B-3311-4B55-8BCE-6530CA5B5959</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>keyword</key>
-				<string>.offp</string>
-				<key>runningsubtext</key>
-				<string>Searching projects...</string>
-				<key>script</key>
-				<string>QUERY=$(./normalise "{query}")
-./findProject.sh "$QUERY" 2&gt;&amp;1 | tee offp.log</string>
-				<key>subtext</key>
-				<string>Enter part of project name</string>
-				<key>title</key>
-				<string>OmniFocus: Find project</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>376B7914-BA86-4DCC-8AE3-59E9F4B620CF</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>62</integer>
-				<key>script</key>
-				<string>set temp to "{query}"
-if temp is not "" then
-	tell application "Alfred 2" to search ".oftp " &amp; temp
-end if</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>302013FC-E146-4CD9-814E-5AA0154C335F</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>/usr/bin/osascript focusProject.scpt "{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>8CF7ACA2-EAE8-42E6-9E4D-A48A91A8E3E4</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -699,6 +615,90 @@ end if</string>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>485B6E61-6548-42E7-A129-8D4563928A38</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>hotkey</key>
+				<integer>35</integer>
+				<key>hotmod</key>
+				<integer>393216</integer>
+				<key>hotstring</key>
+				<string>P</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>C2D5744B-3311-4B55-8BCE-6530CA5B5959</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>keyword</key>
+				<string>.offp</string>
+				<key>runningsubtext</key>
+				<string>Searching projects...</string>
+				<key>script</key>
+				<string>QUERY=$(./normalise "{query}")
+./findProject.sh "$QUERY" 2&gt;&amp;1 | tee offp.log</string>
+				<key>subtext</key>
+				<string>Enter part of project name</string>
+				<key>title</key>
+				<string>OmniFocus: Find project</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>376B7914-BA86-4DCC-8AE3-59E9F4B620CF</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>62</integer>
+				<key>script</key>
+				<string>set temp to "{query}"
+if temp is not "" then
+	tell application "Alfred 2" to search ".oftp " &amp; temp
+end if</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>302013FC-E146-4CD9-814E-5AA0154C335F</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>/usr/bin/osascript focusProject.scpt "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8CF7ACA2-EAE8-42E6-9E4D-A48A91A8E3E4</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1131,7 +1131,7 @@ IFS="$OLDIFS"</string>
 		<key>0CB9B681-A718-48DE-B634-3F2C81C3FA77</key>
 		<dict>
 			<key>ypos</key>
-			<real>310</real>
+			<real>210</real>
 		</dict>
 		<key>1243AC6D-2702-42AD-B52F-800E1DB6FEE4</key>
 		<dict>
@@ -1151,7 +1151,7 @@ IFS="$OLDIFS"</string>
 		<key>302013FC-E146-4CD9-814E-5AA0154C335F</key>
 		<dict>
 			<key>ypos</key>
-			<real>660</real>
+			<real>860</real>
 		</dict>
 		<key>327F670C-B57A-4FE1-A976-7D847010B880</key>
 		<dict>
@@ -1161,7 +1161,7 @@ IFS="$OLDIFS"</string>
 		<key>376B7914-BA86-4DCC-8AE3-59E9F4B620CF</key>
 		<dict>
 			<key>ypos</key>
-			<real>660</real>
+			<real>860</real>
 		</dict>
 		<key>3CE76F56-EC88-4255-80EF-3BE3F9D75A41</key>
 		<dict>
@@ -1181,12 +1181,12 @@ IFS="$OLDIFS"</string>
 		<key>485B6E61-6548-42E7-A129-8D4563928A38</key>
 		<dict>
 			<key>ypos</key>
-			<real>960</real>
+			<real>760</real>
 		</dict>
 		<key>4E512B78-608B-43FB-8062-A509818E2BDD</key>
 		<dict>
 			<key>ypos</key>
-			<real>860</real>
+			<real>660</real>
 		</dict>
 		<key>538E276F-6A73-4474-913B-ADA39F36E65B</key>
 		<dict>
@@ -1196,7 +1196,7 @@ IFS="$OLDIFS"</string>
 		<key>5B4B3531-F9BE-40EB-8315-AC6E4599AD24</key>
 		<dict>
 			<key>ypos</key>
-			<real>210</real>
+			<real>310</real>
 		</dict>
 		<key>69C27133-6328-449F-B863-83CEE49688B7</key>
 		<dict>
@@ -1221,12 +1221,12 @@ IFS="$OLDIFS"</string>
 		<key>8B97078F-5F56-4029-9313-3BA408AC8A5D</key>
 		<dict>
 			<key>ypos</key>
-			<real>860</real>
+			<real>660</real>
 		</dict>
 		<key>8CF7ACA2-EAE8-42E6-9E4D-A48A91A8E3E4</key>
 		<dict>
 			<key>ypos</key>
-			<real>760</real>
+			<real>960</real>
 		</dict>
 		<key>8F9DE859-5A9C-4B49-B378-6E59FC28CB26</key>
 		<dict>
@@ -1251,7 +1251,7 @@ IFS="$OLDIFS"</string>
 		<key>C2D5744B-3311-4B55-8BCE-6530CA5B5959</key>
 		<dict>
 			<key>ypos</key>
-			<real>660</real>
+			<real>860</real>
 		</dict>
 		<key>CD421C32-4DFF-4081-83AA-124CFA799A2C</key>
 		<dict>
@@ -1276,7 +1276,7 @@ IFS="$OLDIFS"</string>
 		<key>F2114B82-1948-4054-A554-C9826BC5ADCA</key>
 		<dict>
 			<key>ypos</key>
-			<real>860</real>
+			<real>660</real>
 		</dict>
 		<key>F776373A-EC81-4548-8127-958986750A66</key>
 		<dict>
