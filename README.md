@@ -32,7 +32,7 @@ Use Alfred to:
 Installation
 ------------
 
-[Download](https://github.com/markokaestner/alfred2/blob/master/workflows/OF-TaskActions/package/OF-TaskActions.alfredworkflow?raw=true) and import into Alfred 2.
+[Download](http://bit.ly/16TZYi8) and import into Alfred 2.
 
 Usage
 -----
