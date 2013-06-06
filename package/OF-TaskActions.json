@@ -1,5 +1,5 @@
 {
     "version": 2.4,
-    "download_url": "https://github.com/markokaestner/alfred2/blob/master/workflows/OF-TaskActions/package/OF-TaskActions.alfredworkflow?raw=true",
-    "description": "new folder search, focus folders, projects, contexts, bugfixes"
+    "download_url": "https://raw.github.com/markokaestner/of-task-actions/master/package/OF-TaskActions.alfredworkflow",
+    "description": "completely rewritten"
 }
