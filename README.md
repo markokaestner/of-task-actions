@@ -10,6 +10,7 @@ Features
 
 Use Alfred to:
 
+* Search for tasks
 * Search for projects
 * Search for contexts
 * Search for perspectives
@@ -80,6 +81,9 @@ Usage
 
 #### Manage Tasks
 
+* **`.offt [part of task name]`** - Search for tasks
+    * **`↩`** - Show details of selected task
+
 * **`.ofti`** - Show tasks in Inbox
     * **`↩`** - Show details of selected task
 
@@ -97,6 +101,7 @@ Usage
 
 * **`⇧⌃I`** - Show tasks in Inbox
 * **`⇧⌃D`** - Show tasks done today
+* **`⇧⌃T`** - Search for tasks
 * **`⇧⌃P`** - Search for projects
 * **`⇧⌃C`** - Search for contexts
 * **`⇧⌃V`** - Search for perspectives
