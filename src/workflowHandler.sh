@@ -42,7 +42,7 @@ getXMLResults() {
 # Escapes XML special characters with their entities
 ###############################################################################
 xmlEncode() {
-  echo "$1" | sed s/"&"/"\&amp;"/ | sed s/">"/"\&gt;"/ | sed s/"<"/"\&lt;"/ | sed s/"\'"/"\&apos;"/ | sed s/"\""/"\&quot;"/
+  echo "$1" | sed -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g' -e "s/'/\&apos;/g" -e 's/"/\&quot;/g'
 }
 
 ###############################################################################
