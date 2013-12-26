@@ -147,10 +147,13 @@ getTasksInInbox() {
 
 getTasksDoneToday() {
 	local START_OF_DAY=$(date -v0H -v0M -v0S +%s)
+	local ZONERESET=$(date +%z | awk '{if (substr($1,1,1)!="+") {printf "+"} else {printf "-"} print substr($1,2,4)}')
+	local YEARZERO=$(date -j -f "%Y-%m-%d %H:%M:%S %z" "2001-01-01 0:0:0 $ZONERESET" "+%s")
+	local DONE="($YEARZERO + t.dateCompleted)"
 
 	local SELECT="t.persistentIdentifier, t.name, $(formatDate 't.dateToStart'), $(formatDate 't.dateDue'), t.isDueSoon, t.isOverdue, t.flagged, t.repetitionMethodString, t.repetitionRuleString, c.name, p.name"
-	local FROM="Task t, (Task tt left join ProjectInfo pp ON tt.persistentIdentifier = pp.pk ) p, Context c"
-	local WHERE="t.blocked = 0 AND t.childrenCountAvailable = 0 AND t.blockedByFutureStartDate = 0 AND t.containingProjectInfo = p.pk AND t.context = c.persistentIdentifier AND t.dateCompleted IS NOT NULL AND $(formatDate 't.dateCompleted') > $START_OF_DAY"
+	local FROM="((task tt left join projectinfo pi on tt.containingprojectinfo=pi.pk) t left join task p on t.task=p.persistentIdentifier) left join context c on t.context = c.persistentIdentifier"
+	local WHERE="t.dateCompleted IS NOT NULL AND $DONE > $START_OF_DAY"
 	local SQL="SELECT $SELECT FROM $FROM WHERE $WHERE"
 
 	local OLDIFS="$IFS"
