@@ -22,6 +22,45 @@ formatDate() {
 	echo "strftime('%Y-%m-%d %H:%M',($YEARZERO + $1), 'unixepoch')";
 }
 
+findTask() {
+	local SELECT="t.persistentIdentifier, t.name, $(formatDate 't.dateToStart'), $(formatDate 't.dateDue'), t.isDueSoon, t.isOverdue, t.flagged, t.repetitionMethodString, t.repetitionRuleString, c.name, p.name"
+	local FROM="((task tt left join projectinfo pi on tt.containingprojectinfo=pi.pk) t left join task p on t.task=p.persistentIdentifier) left join context c on t.context = c.persistentIdentifier"
+	local WHERE="t.blocked = 0 AND t.childrenCountAvailable = 0 AND t.blockedByFutureStartDate = 0 AND t.dateCompleted IS NULL AND lower(t.name) LIKE lower('%$@%')"
+	local SQL="SELECT $SELECT FROM $FROM WHERE $WHERE"
+	
+	local OLDIFS="$IFS"
+	IFS='
+'
+
+	DBRESULTS=$(executeQuery "$SQL")
+
+	for R in ${DBRESULTS[*]}; do
+	    TID=${R%%|*}
+	    REST=${R#*|}
+	    TNAME=${REST%%|*}
+	    REST=${REST#*|}
+	    TSTART=${REST%%|*}
+	    REST=${REST#*|}
+	    TDUE=${REST%%|*}
+	    REST=${REST#*|}
+	    TSOON=${REST%%|*}
+	    REST=${REST#*|}
+	    TOVERDUE=${REST%%|*}
+	    REST=${REST#*|}
+	    TFLAGGED=${REST%%|*}
+	    REST=${REST#*|}
+	    TREPTYPE=${REST%%|*}
+	    REST=${REST#*|}
+	    TREPRULE=${REST%%|*}
+	    REST=${REST#*|}
+	    TCONTEXT=${REST%%|*}
+	    TPROJECT=${REST##*|}
+
+	    addResult "${TID}" "${R}|0" "${TNAME} (${TPROJECT})" "Start: ${TSTART}  |  Due: ${TDUE}  |  Context: ${TCONTEXT}" "img/detail/$(getTheme)/task${TFLAGGED}${TSOON}${TOVERDUE}.png" "yes"
+	done
+	IFS="$OLDIFS"
+}
+
 findFolder() {
 	local SELECT="f.persistentIdentifier, f.name, f.numberOfAvailableTasks"
 	local FROM="Folder f"
@@ -454,6 +493,9 @@ main() {
 	fi
 
 	case "$FUNC" in
+		offt)
+			findTask "$QUERY"
+			;;
 		offf)
 			findFolder "$QUERY"
 			;;
